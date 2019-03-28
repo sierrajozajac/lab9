@@ -33,7 +33,7 @@
          * Here is the base case (ending condition): value == 1.
          * This lets our recursion know when to stop.
          */
-        //TODO
+        if (value==1) return 1;
 
 
         /*
@@ -44,7 +44,7 @@
          * 
          * By doing this, we break up the equation n! into n! = n * (n-1)!.
          */
-        //TODO
+        return value * factorial(value-1);
 
     }
 
@@ -66,7 +66,8 @@
      */
     public int fibonacci(int n)
     {
-        //TODO
+        if (n==1) return 1;
+	return n + fibonacci(n-1);
     }
 
     
@@ -99,22 +100,23 @@
     
         public Tree(int value)
         {
-    	    //TODO
+    	    children = new ArrayList<Tree>();
+	    this.value = value;
         }
     
         public int getValue()
         {
-    	    //TODO
+    	    return value;
         }
     
         public ArrayList<Tree> getChildren()
         {
-    	    //TODO
+    	    return children;
         }
     
         public void add(Tree child)
         {
-    	    //TODO
+    	    children.add(child);
         }
     }
     
@@ -148,10 +150,10 @@
     {
         if (height == 1) 
         {
-    	    //TODO
+    	    return 1;
         }
         
-    	//TODO
+    	return Math.pow(branchingFactor, height-1) + nnaryTreeSize(branchingFactor, height-1);
     }
 
     /** **********************************************************************
@@ -164,7 +166,15 @@
      */
     public int treeSum(Tree tree)
     {
-    	//TODO
+    	if (tree.children.size() == 0) {
+	    return tree.value;
+	}
+	
+	int ret = 0;
+	for (Tree child : tree.children) {
+	    ret += treeSum(child);
+	}
+	return ret;
     }
     
     /** **********************************************************************
